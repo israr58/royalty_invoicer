@@ -5,7 +5,7 @@ export type Invoice = {
   songName: string;
   author: string;
   progress: number;
-  timestamp: string; // ISO
+  timestamp: string; 
 };
 
 // Static seed data
@@ -22,4 +22,4 @@ export const songs: Song[] = [
   { id: 10, name: "Creepin'", author: 'Metro Boomin, The Weeknd, 21 Savage', progress: 0.32 }
 ];
 
-export const invoices: Invoice[] = []; // in-memory for MVP
+export const invoices: Invoice[] = []; // in-memory

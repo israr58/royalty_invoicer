@@ -3,7 +3,7 @@
 #  Royalty Invoicer  (Express + React + TypeScript)
 
 A minimal, testable MVP that simulates a royalty invoicing workflow for a music streaming platform.
-Users can view songs with calculation progress, issue invoices for specific tracks, and review a history of invoices — all backed by an Express API and a React/TypeScript frontend.
+Users can view songs with calculation progress, issue invoices for specific tracks, and review a history of invoices , all backed by an Express API and a React/TypeScript frontend.
 
 This project is organized as a **monorepo** with two workspaces:
 
@@ -69,7 +69,7 @@ royalty-invoicer/
 
   * 400 → Missing/invalid `songId` or `progress`.
   * 404 → Song not found.
-* **Persistence**: In-memory arrays (reset on restart, fine for MVP).
+* **Persistence**: In-memory arrays (reset on restart).
 * **Config**
 
   * `PORT` → Server port (default: 4000).
