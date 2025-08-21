@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
-    "types": ["jest", "node", "vite/client","cypress"]  
+    "types": ["jest", "node", "vite/client", "cypress"]
   },
-  "include": ["src", "jest.setup.ts","cypress"]
+  "include": ["src", "jest.setup.ts", "cypress"]
 }

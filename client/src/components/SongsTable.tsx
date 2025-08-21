@@ -1,6 +1,6 @@
-import React from 'react';
-import type { Song } from '../types';
-import { useStore } from '../state/store';
+import React from "react";
+import type { Song } from "../types";
+import { useStore } from "../state/store";
 
 const ProgressBar: React.FC<{ value: number }> = ({ value }) => (
   <div className="progress" aria-label={`Progress ${Math.round(value * 100)}%`}>
@@ -13,7 +13,12 @@ export const SongsTable: React.FC = () => {
   const { songs, lastClickBySong, loading, error } = state;
 
   if (loading) return <div className="card">Loading…</div>;
-  if (error) return <div className="card" role="alert">{error}</div>;
+  if (error)
+    return (
+      <div className="card" role="alert">
+        {error}
+      </div>
+    );
 
   return (
     <div className="card">
@@ -39,23 +44,34 @@ export const SongsTable: React.FC = () => {
                 <td>
                   <div className="vstack" style={{ gap: 6 }}>
                     <ProgressBar value={s.progress} />
-                    <span className="small">{(s.progress * 100).toFixed(0)}%</span>
+                    <span className="small">
+                      {(s.progress * 100).toFixed(0)}%
+                    </span>
                   </div>
                 </td>
                 <td>
                   <div className="vstack">
                     <div className="hstack">
-                      <button className="button" onClick={() => issueInvoice(s)} aria-label={`Issue invoice for ${s.name}`}>
+                      <button
+                        className="button"
+                        onClick={() => issueInvoice(s)}
+                        aria-label={`Issue invoice for ${s.name}`}
+                      >
                         Issue Invoice
                       </button>
                       {last && (
-                        <span className="badge" title={`Progress captured at click`}>
+                        <span
+                          className="badge"
+                          title={`Progress captured at click`}
+                        >
                           {Math.round(last.progress * 100)}%
                         </span>
                       )}
                     </div>
                     {last && (
-                      <span className="small">Last issued: {new Date(last.timestamp).toLocaleString()}</span>
+                      <span className="small">
+                        Last issued: {new Date(last.timestamp).toLocaleString()}
+                      </span>
                     )}
                   </div>
                 </td>

@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext", // allow import.meta
+    "isolatedModules": false, // avoid TS isolated check blocking import.meta
+    "types": ["jest", "node"] // add node + jest globals
+  }
+}

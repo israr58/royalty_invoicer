@@ -2,53 +2,51 @@
 
 // Simple E2E with network stubbing
 
-describe('Royalty Invoicer', () => {
-  it('lists songs and issues an invoice (stubbed)', () => {
+describe("Royalty Invoicer", () => {
+  it("lists songs and issues an invoice (stubbed)", () => {
     // Stub songs API
-    cy.intercept('GET', '**/api/songs', {
+    cy.intercept("GET", "**/api/songs", {
       statusCode: 200,
-      body: [
-        { id: 1, name: 'Flowers', author: 'Miley Cyrus', progress: 0.15 }
-      ]
-    }).as('songs');
+      body: [{ id: 1, name: "Flowers", author: "Miley Cyrus", progress: 0.15 }],
+    }).as("songs");
 
     // Stub invoices API (initial load = empty list)
-    cy.intercept('GET', '**/api/invoices', {
+    cy.intercept("GET", "**/api/invoices", {
       statusCode: 200,
-      body: []
-    }).as('invoices');
+      body: [],
+    }).as("invoices");
 
     // Stub invoice creation
-    cy.intercept('POST', '**/api/invoices', (req) => {
+    cy.intercept("POST", "**/api/invoices", (req) => {
       const { songId, progress } = req.body;
       req.reply({
         statusCode: 201,
         body: {
-          id: 'inv-1',
+          id: "inv-1",
           songId,
-          songName: 'Flowers',
-          author: 'Miley Cyrus',
+          songName: "Flowers",
+          author: "Miley Cyrus",
           progress,
-          timestamp: new Date().toISOString()
-        }
+          timestamp: new Date().toISOString(),
+        },
       });
-    }).as('createInvoice');
+    }).as("createInvoice");
 
     // Visit client app
-    cy.visit('/');
+    cy.visit("/");
 
     // Check table loaded
-    cy.contains('Songs').should('be.visible');
-    cy.contains('Flowers').should('be.visible');
+    cy.contains("Songs").should("be.visible");
+    cy.contains("Flowers").should("be.visible");
 
     // Click "Issue Invoice"
-    cy.contains('button', /issue invoice/i).click();
+    cy.contains("button", /issue invoice/i).click();
 
     // Ensure POST request was made and intercepted
-    cy.wait('@createInvoice');
+    cy.wait("@createInvoice");
 
     // Check history updated
-    cy.contains('Invoice History').should('be.visible');
-    cy.contains('Flowers').should('be.visible');
+    cy.contains("Invoice History").should("be.visible");
+    cy.contains("Flowers").should("be.visible");
   });
 });

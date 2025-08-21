@@ -1,5 +1,5 @@
-import React from 'react';
-import { useStore } from '../state/store';
+import React from "react";
+import { useStore } from "../state/store";
 
 export const InvoiceHistory: React.FC = () => {
   const { state } = useStore();
@@ -13,7 +13,9 @@ export const InvoiceHistory: React.FC = () => {
         <ul>
           {invoices.map((inv) => (
             <li key={inv.id} style={{ marginBottom: 8 }}>
-              <strong>{new Date(inv.timestamp).toLocaleString()}</strong> — {inv.author} — <em>{inv.songName}</em> — {Math.round(inv.progress * 100)}%
+              <strong>{new Date(inv.timestamp).toLocaleString()}</strong> —{" "}
+              {inv.author} — <em>{inv.songName}</em> —{" "}
+              {Math.round(inv.progress * 100)}%
             </li>
           ))}
         </ul>
