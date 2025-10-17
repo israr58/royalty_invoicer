@@ -21,7 +21,7 @@ export const SongsTable: React.FC = () => {
     );
 
   return (
-    <div className="card">
+    <div className="card testing">
       <h2 style={{ marginTop: 0 }}>Songs</h2>
       <table className="table">
         <thead>
